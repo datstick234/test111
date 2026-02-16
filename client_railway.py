@@ -11,10 +11,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ═══════════════════════════════════════════
 
 # Đổi URL này sau khi deploy lên Railway
-RAILWAY_URL = "https://your-app-name.up.railway.app/check"
+RAILWAY_URL = "https://test111-production.up.railway.app/check"
 
 MAX_THREADS = 5     # Tùy chỉnh (Railway server mạnh hơn máy cá nhân)
-TIMEOUT = 40        # Playwright cần thời gian load
+TIMEOUT = 70        # Playwright cần thời gian load (Server timeout 60s + buffer)
 
 # Lock cho file output
 file_lock = threading.Lock()

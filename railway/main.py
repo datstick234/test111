@@ -47,7 +47,7 @@ async def check_gmail(account: Account):
                 headless=True,
                 args=launch_args,
                 proxy=proxy_config,
-                timeout=30000 
+                timeout=60000 
             )
 
             # Create context with anti-detect features
@@ -61,7 +61,7 @@ async def check_gmail(account: Account):
             page = await context.new_page()
             
             # Navigate to login
-            await page.goto("https://accounts.google.com/", timeout=20000)
+            await page.goto("https://accounts.google.com/", timeout=60000)
             
             # Fill email
             await page.fill('input[type="email"]', account.email)
@@ -69,7 +69,7 @@ async def check_gmail(account: Account):
             
             # Wait for either password input or error
             try:
-                await page.wait_for_selector('input[type="password"], div[aria-atomic="true"][aria-live="assertive"]', timeout=10000)
+                await page.wait_for_selector('input[type="password"], div[aria-atomic="true"][aria-live="assertive"]', timeout=30000)
             except:
                 return {"status": "DEAD", "message": "Email not found or timeout"}
 
@@ -92,7 +92,7 @@ async def check_gmail(account: Account):
             # 4. Captcha -> ERROR
             
             try:
-                await page.wait_for_navigation(timeout=10000)
+                await page.wait_for_navigation(timeout=30000)
             except:
                 pass # Timeout waiting for nav is fine, we check content
 
